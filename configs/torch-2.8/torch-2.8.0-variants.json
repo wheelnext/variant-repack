@@ -40,6 +40,7 @@
                 "sm_arch": [
                     "100_real",
                     "120_real",
+                    "70_real",
                     "75_real",
                     "80_real",
                     "86_real",
@@ -56,6 +57,7 @@
                     "100_real",
                     "120_real",
                     "120_virtual",
+                    "70_real",
                     "75_real",
                     "80_real",
                     "86_real",
