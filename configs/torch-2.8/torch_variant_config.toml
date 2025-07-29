@@ -1,5 +1,5 @@
 [metadata_configs]
-[metadata_configs.default]
+[metadata_configs.torch]
 normalize_package_name = false
 normalize_version = true
 deps_remove_list = [
@@ -66,7 +66,13 @@ deps_add_list    = [
     'nvidia-cufile==1.14.1.1; platform_system == "Linux" and platform_machine == "x86_64" and "nvidia :: cuda_version_lower_bound :: 12.6" not in variant_properties and "nvidia :: cuda_version_lower_bound :: 12.8" not in variant_properties and "nvidia :: cuda_version_lower_bound :: 12.9" in variant_properties',
 ]
 
-# PyT CUDA `sm_archs`: https://github.com/pytorch/pytorch/blob/v2.8.0-rc3/.ci/magma/Makefile
+[metadata_configs.torchvision]
+normalize_package_name = false
+normalize_version = true
+deps_remove_list = []
+deps_add_list    = []
+
+# PyT CUDA `sm_archs`: https://github.com/pytorch/pytorch/blob/v2.8.0-rc8/.ci/manywheel/build_cuda.sh
 
 [variant_configs]
 [variant_configs.cu126]
