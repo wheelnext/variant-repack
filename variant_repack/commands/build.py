@@ -53,7 +53,7 @@ def sanitize_wheel_filename(filename: str) -> str:
         raise ValueError(f"Invalid wheel filename: {filename}")
 
     # Remove +<build_tag> from the version part (index 1)
-    parts[1] = re.sub(r"\+[a-zA-Z0-9_]+", "", parts[1])
+    parts[1] = re.sub(r"\+[a-zA-Z0-9_\.]+", "", parts[1])
 
     return "-".join(parts)
 
@@ -274,10 +274,10 @@ def make_variant(
 
         # Remove version suffix patterns like +cu126, +cpu, etc. from dist-info
         # directory name
-        new_dir_name = re.sub(r"\+[a-zA-Z0-9_]+", "", distinfo_dir.name)
+        new_dir_name = re.sub(r"\+[a-zA-Z0-9_\.]+\.", ".", distinfo_dir.name)
         if new_dir_name != distinfo_dir.name:
             new_distinfo_dir = distinfo_dir.parent / new_dir_name
-            distinfo_dir = distinfo_dir.rename(new_distinfo_dir)
+            distinfo_dir.rename(new_distinfo_dir)
             logger.debug(
                 f"Renamed dist-info directory from {distinfo_dir.name} to "
                 f"{new_dir_name}"
