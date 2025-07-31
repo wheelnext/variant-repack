@@ -69,8 +69,8 @@ deps_add_list    = [
 [metadata_configs.torchvision]
 normalize_package_name = false
 normalize_version = true
-deps_remove_list = []
-deps_add_list    = []
+deps_remove_list = ["torch"]
+deps_add_list    = ["torch==2.8.0"]
 
 # PyT CUDA `sm_archs`: https://github.com/pytorch/pytorch/blob/v2.8.0-rc8/.ci/manywheel/build_cuda.sh
 
