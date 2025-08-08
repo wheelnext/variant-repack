@@ -115,6 +115,17 @@ properties = [
   { namespace = "nvidia", feature = "sm_arch", value = "120_virtual" },
 ]
 
+[variant_configs.intel]
+variant_label = "xpu"  # [a-z0-9_]{1,8}
+properties = [
+  { namespace = "intel", feature = "device_ip", value = "20.4.4" },   # lnl-m
+  { namespace = "intel", feature = "device_ip", value = "20.1.0" },   # bmg
+  { namespace = "intel", feature = "device_ip", value = "12.74.4" },  # arl-h
+  { namespace = "intel", feature = "device_ip", value = "12.71.4" },  # mtl-h
+  { namespace = "intel", feature = "device_ip", value = "12.60.7" },  # pvc
+  { namespace = "intel", feature = "device_ip", value = "12.55.8" },  # dg2
+]
+
 [variant_configs.cpu]
 # variant_label = None  # FORBIDDEN - No Alias -> NULL VARIANT: `00000000`
 properties = []
