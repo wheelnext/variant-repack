@@ -13,7 +13,7 @@ dev-dependencies = [
 name = "variant-repack"
 description = "A library that provides help to Python Wheel into Wheel Variants."
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = { file = "LICENSE" }
 authors = [
     { name = "Jonathan Dekhtiar", email = "jonathan@dekhtiar.com" },
