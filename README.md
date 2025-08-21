@@ -189,7 +189,7 @@ deps_remove_list = ["specific-dependency"]
 
 # Variant configurations define the properties for each variant
 [variant_configs.cfg_name1]
-# Optional: Specify a custom variant label (max 8 alphanumeric chars)
+# Optional: Specify a custom variant label (max 16 alphanumeric chars)
 variant_label = "variant_label1"
 # List of variant properties
 properties = [

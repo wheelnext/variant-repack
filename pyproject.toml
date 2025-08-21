@@ -3,11 +3,16 @@ requires = ["flit_core >=3.11,<4"]
 build-backend = "flit_core.buildapi"
 
 [tool.uv]
-package = true
 dev-dependencies = [
-    "variant-repack[dev]",
+    "check-manifest",
+    "pre-commit>=4,<5",  # https://github.com/pre-commit/pre-commit
+    "mypy==1.15.0",      # https://github.com/python/mypy
+    "ruff>=0.3,<1.0",
+    "flit>=3.12,<4",
+    "wheel>=0.45",
     "mockhouse @ git+https://github.com/wheelnext/mockhouse.git#egg=mockhouse&subdirectory=mockhouse_lib"
 ]
+package = true
 
 [project]
 name = "variant-repack"
@@ -35,16 +40,6 @@ dependencies = [
     "wheel>=0.45,<0.46"
 ]
 dynamic = ["version"]
-
-[project.optional-dependencies]
-dev = [
-    "check-manifest",
-    "mypy==1.15.0",      # https://github.com/python/mypy
-    # Pre Commit Hooks
-    "pre-commit>=4,<5",  # https://github.com/pre-commit/pre-commit
-    # Linting
-    "ruff>=0.10,<1.0",
-]
 
 [project.scripts]
 variant_repack = "variant_repack.commands.main:main"
