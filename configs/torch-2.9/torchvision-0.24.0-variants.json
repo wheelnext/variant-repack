@@ -1,0 +1,89 @@
+{
+    "$schema": "https://variants-schema.wheelnext.dev/v0.0.2.json",
+    "default-priorities": {
+        "namespace": [
+            "nvidia",
+            "intel"
+        ]
+    },
+    "providers": {
+        "nvidia": {
+            "enable-if": "platform_system == 'Linux' or platform_system == 'Windows'",
+            "plugin-api": "nvidia_variant_provider.plugin:NvidiaVariantPlugin",
+            "requires": [
+                "nvidia-variant-provider>=0.0.1,<1.0.0"
+            ]
+        },
+        "intel": {
+            "enable-if": "platform_system == 'Linux'",
+            "plugin-api": "intel_variant_provider.plugin:IntelVariantPlugin",
+            "requires": [
+                "intel-variant-provider>=0.0.2,<1.0.0"
+            ]
+        }
+    },
+    "variants": {
+        "00000000": {},
+        "cu126": {
+            "nvidia": {
+                "cuda_version_lower_bound": [
+                    "12.0"
+                ],
+                "sm_arch": [
+                    "50_real",
+                    "60_real",
+                    "70_real",
+                    "75_real",
+                    "80_real",
+                    "86_real",
+                    "90_real"
+                ]
+            }
+        },
+        "cu128": {
+            "nvidia": {
+                "cuda_version_lower_bound": [
+                    "12.8"
+                ],
+                "sm_arch": [
+                    "100_real",
+                    "120_real",
+                    "70_real",
+                    "75_real",
+                    "80_real",
+                    "86_real",
+                    "90_real"
+                ]
+            }
+        },
+        "cu129": {
+            "nvidia": {
+                "cuda_version_lower_bound": [
+                    "12.9"
+                ],
+                "sm_arch": [
+                    "100_real",
+                    "120_real",
+                    "120_virtual",
+                    "70_real",
+                    "75_real",
+                    "80_real",
+                    "86_real",
+                    "90_real"
+                ]
+            }
+        },
+        "xpu": {
+            "intel": {
+                "device_ip": [
+                    "12.55.8",
+                    "12.60.7",
+                    "12.71.4",
+                    "12.74.4",
+                    "20.1.0",
+                    "20.4.4"
+                ]
+            }
+        }
+    }
+}
