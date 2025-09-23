@@ -13,19 +13,17 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 
-def _dump_metadata(
-    input_filepath: pathlib.Path,
-) -> None:
+def _dump_metadata(whl_file: pathlib.Path, only_dependencies: bool = False) -> None:
     # Input Validation
-    if not input_filepath.is_file():
-        raise FileNotFoundError(f"Input Wheel File `{input_filepath}` does not exists.")
+    if not whl_file.is_file():
+        raise FileNotFoundError(f"Input Wheel File `{whl_file}` does not exists.")
 
     # Input Validation - Wheel Filename is valid and non variant already.
-    wheel_info = VALIDATION_WHEEL_NAME_REGEX.fullmatch(input_filepath.name)
+    wheel_info = VALIDATION_WHEEL_NAME_REGEX.fullmatch(whl_file.name)
     if wheel_info is None:
-        raise ValueError(f"{input_filepath.name!r} is not a valid wheel filename.")
+        raise ValueError(f"{whl_file.name!r} is not a valid wheel filename.")
 
-    with zipfile.ZipFile(input_filepath, "r") as input_zip:
+    with zipfile.ZipFile(whl_file, "r") as input_zip:
         for filename in input_zip.namelist():
             components = filename.split("/", 2)
             if (
@@ -34,7 +32,18 @@ def _dump_metadata(
                 and components[1] == "METADATA"
             ):
                 with input_zip.open(filename, "r") as input_file:
-                    sys.stdout.write(input_file.read().decode("utf-8"))
+                    if not only_dependencies:
+                        sys.stdout.write(input_file.read().decode("utf-8"))
+                    else:
+                        sys.stdout.write(
+                            "".join(
+                                line
+                                for line in input_file.read()
+                                .decode("utf-8")
+                                .splitlines(keepends=True)
+                                if line.startswith("Requires-Dist:")
+                            )
+                        )
 
 
 def dump_metadata(args: list[str]) -> None:
@@ -44,16 +53,35 @@ def dump_metadata(args: list[str]) -> None:
     )
 
     parser.add_argument(
-        "-i",
-        "--input_file",
-        dest="input_filepath",
+        "--only-deps",
+        default=False,
+        action="store_true",
+        help="Only display metadata dependencies",
+    )
+
+    group = parser.add_mutually_exclusive_group(required=True)
+
+    group.add_argument(
+        "-f",
+        "--file",
         type=pathlib.Path,
-        required=True,
+        default=None,
         help="Wheel file to process",
+    )
+
+    group.add_argument(
+        "-d",
+        "--directory",
+        type=pathlib.Path,
+        help="Wheel file directory to process",
     )
 
     parsed_args = parser.parse_args(args)
 
-    input_filepath: pathlib.Path = parsed_args.input_filepath
+    if whl_f := parsed_args.file:
+        _dump_metadata(whl_file=whl_f, only_dependencies=parsed_args.only_deps)
 
-    _dump_metadata(input_filepath=input_filepath)
+    else:
+        for whl_f in parsed_args.directory.glob("*.whl"):
+            sys.stdout.write(f"\n# {whl_f.name}\n")
+            _dump_metadata(whl_file=whl_f, only_dependencies=parsed_args.only_deps)
