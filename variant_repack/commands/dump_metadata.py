@@ -82,6 +82,6 @@ def dump_metadata(args: list[str]) -> None:
         _dump_metadata(whl_file=whl_f, only_dependencies=parsed_args.only_deps)
 
     else:
-        for whl_f in parsed_args.directory.glob("*.whl"):
+        for whl_f in sorted(parsed_args.directory.glob("*.whl"), key=lambda f: f.name):
             sys.stdout.write(f"\n# {whl_f.name}\n")
             _dump_metadata(whl_file=whl_f, only_dependencies=parsed_args.only_deps)

@@ -144,7 +144,16 @@ def repack_variant(
     # =========================== RENAMING PACKAGE NAME =========================== #
 
     if metadata_config.get("normalize_package_name", False):
-        cuda_patterns = ["cu11", "cu12", "cpu", "cu118", "cu126", "cu128", "cu129"]
+        cuda_patterns = [
+            "cu11",
+            "cu12",
+            "cu13",
+            "cpu",
+            "cu118",
+            "cu126",
+            "cu128",
+            "cu129",
+        ]
 
         # Rename the .dist-info directory name
         dist_info_dir = metadata_f.parent
