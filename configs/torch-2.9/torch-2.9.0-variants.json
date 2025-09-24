@@ -11,11 +11,11 @@
             "enable-if": "platform_system == 'Linux' or platform_system == 'Windows'",
             "plugin-api": "nvidia_variant_provider.plugin:NvidiaVariantPlugin",
             "requires": [
-                "nvidia-variant-provider>=0.0.1,<1.0.0"
+                "nvidia-variant-provider>=0.0.2,<1.0.0"
             ]
         },
         "intel": {
-            "enable-if": "platform_system == 'Linux'",
+            "enable-if": "platform_system == 'Linux' or platform_system == 'Windows'",
             "plugin-api": "intel_variant_provider.plugin:IntelVariantPlugin",
             "requires": [
                 "intel-variant-provider>=0.0.2,<1.0.0"
@@ -23,7 +23,7 @@
         }
     },
     "variants": {
-        "00000000": {},
+        "null": {},
         "cu126": {
             "nvidia": {
                 "cuda_version_lower_bound": [
@@ -43,33 +43,32 @@
         "cu128": {
             "nvidia": {
                 "cuda_version_lower_bound": [
-                    "12.8"
+                    "12.0"
                 ],
                 "sm_arch": [
-                    "100_real",
-                    "120_real",
                     "70_real",
                     "75_real",
                     "80_real",
                     "86_real",
-                    "90_real"
+                    "90_real",
+                    "100_real",
+                    "120_real"
                 ]
             }
         },
-        "cu129": {
+        "cu13": {
             "nvidia": {
                 "cuda_version_lower_bound": [
-                    "12.9"
+                    "13.0"
                 ],
                 "sm_arch": [
-                    "100_real",
-                    "120_real",
-                    "120_virtual",
-                    "70_real",
                     "75_real",
                     "80_real",
                     "86_real",
-                    "90_real"
+                    "90_real",
+                    "100_real",
+                    "120_real",
+                    "120_virtual"
                 ]
             }
         },
