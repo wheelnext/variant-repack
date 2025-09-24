@@ -3,11 +3,11 @@
 namespace = ["nvidia", "intel"]
 
 [variant.providers.nvidia]
-requires = ["nvidia-variant-provider>=0.0.1,<1.0.0"]
+requires = ["nvidia-variant-provider>=0.0.2,<1.0.0"]
 plugin-api = "nvidia_variant_provider.plugin:NvidiaVariantPlugin"
 enable-if = "platform_system == 'Linux' or platform_system == 'Windows'"
 
 [variant.providers.intel]
-requires = ["intel-variant-provider"]
-enable-if = "platform_system == 'Linux'"
+requires = ["intel-variant-provider>=0.0.2,<1.0.0"]
+enable-if = "platform_system == 'Linux' or platform_system == 'Windows'"
 plugin-api = "intel_variant_provider.plugin:IntelVariantPlugin"
