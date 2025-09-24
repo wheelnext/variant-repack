@@ -5,7 +5,7 @@ default_language_version:
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: trailing-whitespace
         exclude: ^tests/artifacts/
@@ -23,7 +23,7 @@ repos:
 
   # Run the Ruff linter.
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.12.4
+    rev: v0.13.1
     hooks:
       # Linter
       - id: ruff
@@ -32,7 +32,7 @@ repos:
       - id: ruff-format
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.17.0
+    rev: v1.18.2
     hooks:
       - id: mypy
 

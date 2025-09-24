@@ -11,7 +11,6 @@ clean-build: ## remove build artifacts
 	rm -fr dist/
 	rm -fr .eggs/
 	find . -name '*.egg-info' -exec rm -fr {} +
-	find . -name '*.egg' -exec rm -f {} +
 
 clean-pyc: ## remove Python file artifacts
 	find . -name '*.pyc' -exec rm -f {} +
@@ -42,8 +41,7 @@ format:
 # ============================================================================ #
 
 build: clean ## builds source and wheel package
-	pip install --upgrade wheel
-	python3 -m build --wheel
+	flit build --format wheel
 	ls -l dist
 
 publish: build

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</head>
+
+<body cz-shortcut-listen="true">
+    <h1>{{ project_name }}</h1>
+
+    {% for artifact in variants_json_files %}
+    <a href="{{ artifact.fp.name }}#sha256={{ artifact.checksum }}" integrity="sha256-{{ artifact.checksum }}">
+        {{artifact.fp.name }}
+    </a><br>
+    {% endfor %}
+
+    {% for artifact in wheel_variant_files %}
+    <a href="{{ artifact.fp.name }}#sha256={{ artifact.checksum }}" integrity="sha256-{{ artifact.checksum }}">
+        {{artifact.fp.name }}
+    </a><br>
+    {% endfor %}
+</body>
+
+</html>
