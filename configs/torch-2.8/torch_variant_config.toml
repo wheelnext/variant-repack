@@ -76,7 +76,7 @@ deps_add_list    = ["torch==2.8.0"]
 
 [variant_configs]
 [variant_configs.cu126]
-variant_label = "cu126"  # [a-z0-9_]{1,8}
+variant_label = "cu126"  # [0-9a-z._]{1,16}
 properties = [
   { namespace = "nvidia", feature = "cuda_version_lower_bound", value = "12.0" },
   { namespace = "nvidia", feature = "sm_arch", value = "50_real" },
@@ -89,7 +89,7 @@ properties = [
 ]
 
 [variant_configs.cu128]
-variant_label = "cu128"  # [a-z0-9_]{1,8}
+variant_label = "cu128"  # [0-9a-z._]{1,16}
 properties = [
   { namespace = "nvidia", feature = "cuda_version_lower_bound", value = "12.8" },
   { namespace = "nvidia", feature = "sm_arch", value = "70_real" },
@@ -102,7 +102,7 @@ properties = [
 ]
 
 [variant_configs.cu129]
-variant_label = "cu129"  # [a-z0-9_]{1,8}
+variant_label = "cu129"  # [0-9a-z._]{1,16}
 properties = [
   { namespace = "nvidia", feature = "cuda_version_lower_bound", value = "12.9" },
   { namespace = "nvidia", feature = "sm_arch", value = "70_real" },
