@@ -144,22 +144,27 @@ def repack_variant(
     # =========================== RENAMING PACKAGE NAME =========================== #
 
     if metadata_config.get("normalize_package_name", False):
-        cuda_patterns = [
+        normalize_patterns = [
+            # NVIDIA GPU
             "cu11",
             "cu12",
             "cu13",
-            "cpu",
             "cu118",
             "cu126",
             "cu128",
             "cu129",
+            "cuda11x",
+            "cuda12x",
+            "cuda13x",
+            # CPU pattern
+            "cpu",
         ]
 
         # Rename the .dist-info directory name
         dist_info_dir = metadata_f.parent
         dist_info_dir_name = dist_info_dir.name
 
-        for pattern in cuda_patterns:
+        for pattern in normalize_patterns:
             dist_info_dir_name = dist_info_dir_name.replace(f"_{pattern}-", "-")
 
         new_dist_info_dir = dist_info_dir.with_name(dist_info_dir_name)
@@ -173,7 +178,7 @@ def repack_variant(
 
         # Rename the package name in the metadata
         pkg_name = metadata["Name"]
-        for pattern in cuda_patterns:
+        for pattern in normalize_patterns:
             if pkg_name.endswith(f"-{pattern}"):
                 pkg_name = pkg_name.replace(f"-{pattern}", "")
 

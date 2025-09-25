@@ -1,0 +1,59 @@
+[metadata_configs]
+[metadata_configs.default]
+normalize_package_name = true
+normalize_version = false
+deps_remove_list = []
+deps_add_list    = []
+
+[variant_configs]
+[variant_configs.cuda11x]
+variant_label = "cu11"  # [a-z0-9_.]{1,16}
+properties = [
+  { namespace = "nvidia", feature = "cuda_version_lower_bound", value = "11.0" },
+  { namespace = "nvidia", feature = "sm_arch", value = "35_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "37_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "50_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "52_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "60_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "61_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "70_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "75_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "80_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "86_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "89_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "90_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "90_virtual" },
+]
+
+[variant_configs.cuda12x]
+variant_label = "cu12"  # [a-z0-9_.]{1,16}
+properties = [
+  { namespace = "nvidia", feature = "cuda_version_lower_bound", value = "12.0" },
+  { namespace = "nvidia", feature = "sm_arch", value = "50_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "52_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "60_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "61_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "70_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "75_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "80_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "86_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "89_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "90_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "100_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "120_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "100_virtual" },
+]
+
+[variant_configs.cuda13x]
+variant_label = "cu13"  # [a-z0-9_.]{1,16}
+properties = [
+  { namespace = "nvidia", feature = "cuda_version_lower_bound", value = "13.0" },
+  { namespace = "nvidia", feature = "sm_arch", value = "75_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "80_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "86_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "89_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "90_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "100_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "120_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "120_virtual" },
+]

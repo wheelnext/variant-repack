@@ -1,0 +1,7 @@
+[variant.default-priorities]
+namespace = ["nvidia"]
+
+[variant.providers.nvidia]
+requires = ["nvidia-variant-provider>=0.0.2,<1.0.0"]
+plugin-api = "nvidia_variant_provider.plugin:NvidiaVariantPlugin"
+enable-if = "platform_system == 'Linux'"
