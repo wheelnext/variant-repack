@@ -10,7 +10,7 @@ import re
 import shutil
 import tempfile
 from functools import lru_cache
-from typing import Any
+from typing import TYPE_CHECKING
 
 import tomllib
 from frozendict import frozendict
@@ -25,6 +25,10 @@ from variantlib.constants import VARIANT_LABEL_LENGTH
 from variantlib.pyproject_toml import VariantPyProjectToml
 from wheel.cli.pack import pack as wheel_pack
 from wheel.cli.unpack import unpack as wheel_unpack
+
+if TYPE_CHECKING:
+    from email.message import Message
+    from typing import Any
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -57,6 +61,32 @@ def sanitize_wheel_filename(filename: str) -> str:
     parts[1] = re.sub(r"\+[a-zA-Z0-9_\.]+", "", parts[1])
 
     return "-".join(parts)
+
+
+def rename_package(
+    metadata_f: pathlib.Path, metadata: Message[str, str], new_pkg_name: str
+) -> pathlib.Path:
+    # Rename the package name in the metadata
+    old_pkg_name = metadata["Name"]
+    logger.debug(f"Renaming package directory: {old_pkg_name} -> {new_pkg_name}")
+
+    metadata.replace_header("Name", new_pkg_name)
+
+    # Rename the .dist-info directory name
+    dist_info_dir = metadata_f.parent
+
+    _, pkg_version = dist_info_dir.name.split("-", maxsplit=1)
+
+    new_dist_info_dir = dist_info_dir.with_name(
+        f"{new_pkg_name.replace('-', '_')}-{pkg_version}"
+    )
+    dist_info_dir.rename(new_dist_info_dir)
+
+    metadata_f = new_dist_info_dir / metadata_f.name
+
+    logger.debug(f"Renamed dist-info directory: {dist_info_dir} -> {new_dist_info_dir}")
+
+    return new_dist_info_dir
 
 
 @lru_cache
@@ -112,6 +142,15 @@ def read_configuration(
     return frozendict(metadata_config), frozendict(variant_config)
 
 
+def replace_from_end(s: str, old: str, new: str) -> str:
+    """
+    Replace `old` with `new` only if `s` ends with `old`.
+    """
+    if s.endswith(old):
+        return s[: -len(old)] + new if old else s + new
+    return s
+
+
 def repack_variant(
     metadata_config_name: str | None,
     variant_config_name: str | None,
@@ -143,7 +182,14 @@ def repack_variant(
 
     # =========================== RENAMING PACKAGE NAME =========================== #
 
-    if metadata_config.get("normalize_package_name", False):
+    dist_info_dir: pathlib.Path
+
+    if new_pkg_name := metadata_config.get("rename_package_to", False):
+        dist_info_dir = rename_package(
+            metadata_f=metadata_f, metadata=metadata, new_pkg_name=new_pkg_name
+        )
+
+    elif metadata_config.get("normalize_package_name", False):
         normalize_patterns = [
             # NVIDIA GPU
             "cu11",
@@ -160,29 +206,18 @@ def repack_variant(
             "cpu",
         ]
 
-        # Rename the .dist-info directory name
-        dist_info_dir = metadata_f.parent
-        dist_info_dir_name = dist_info_dir.name
+        package_name = metadata["Name"]
 
         for pattern in normalize_patterns:
-            dist_info_dir_name = dist_info_dir_name.replace(f"_{pattern}-", "-")
+            package_name = replace_from_end(package_name, f"-{pattern}", "")
+            package_name = replace_from_end(package_name, f"_{pattern}", "")
 
-        new_dist_info_dir = dist_info_dir.with_name(dist_info_dir_name)
-        dist_info_dir.rename(new_dist_info_dir)
-
-        metadata_f = new_dist_info_dir / metadata_f.name
-
-        logger.debug(
-            f"Renamed dist-info directory: {dist_info_dir} -> {new_dist_info_dir}"
+        dist_info_dir = rename_package(
+            metadata_f=metadata_f, metadata=metadata, new_pkg_name=package_name
         )
 
-        # Rename the package name in the metadata
-        pkg_name = metadata["Name"]
-        for pattern in normalize_patterns:
-            if pkg_name.endswith(f"-{pattern}"):
-                pkg_name = pkg_name.replace(f"-{pattern}", "")
-
-        metadata.replace_header("Name", pkg_name)
+    else:
+        dist_info_dir = metadata_f.parent
 
     # ========================= CHECKING CONFIG TOML FILE ========================= #
 
@@ -211,7 +246,7 @@ def repack_variant(
     for dep in output_dependencies:
         metadata["Requires-Dist"] = dep
 
-    with metadata_f.open(mode="wb") as fp:
+    with (dist_info_dir / metadata_f.name).open(mode="wb") as fp:
         fp.write(metadata.as_bytes(policy=METADATA_POLICY))
 
 

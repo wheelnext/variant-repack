@@ -4,15 +4,10 @@ from __future__ import annotations
 
 import argparse
 import logging
-import sys
+from importlib.metadata import entry_points
 
 import variant_repack
 from variant_repack import __package_name__
-
-if sys.version_info >= (3, 10):
-    from importlib.metadata import entry_points
-else:
-    from importlib_metadata import entry_points
 
 
 def main() -> None:
