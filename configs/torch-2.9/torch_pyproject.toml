@@ -1,6 +1,6 @@
 # https://github.com/pytorch/pytorch/blob/b46ca66793573f00f5bb7f8664ae72b4a5f38a2a/pyproject.toml
 [variant.default-priorities]
-namespace = ["nvidia", "intel"]
+namespace = ["nvidia", "intel", "amd"]
 
 [variant.providers.nvidia]
 requires = ["nvidia-variant-provider>=0.0.2,<1.0.0"]
@@ -11,3 +11,8 @@ enable-if = "platform_system == 'Linux' or platform_system == 'Windows'"
 requires = ["intel-variant-provider>=0.0.2,<1.0.0"]
 enable-if = "platform_system == 'Linux' or platform_system == 'Windows'"
 plugin-api = "intel_variant_provider.plugin:IntelVariantPlugin"
+
+[variant.providers.amd]
+requires = ["amd-variant-provider>=0.0.2,<1.0.0"]
+plugin-api = "amd_variant_provider.plugin:AMDVariantPlugin"
+enable-if = "platform_system == 'Linux'"
