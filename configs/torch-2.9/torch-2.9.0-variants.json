@@ -3,7 +3,8 @@
     "default-priorities": {
         "namespace": [
             "nvidia",
-            "intel"
+            "intel",
+            "amd"
         ]
     },
     "providers": {
@@ -19,6 +20,13 @@
             "plugin-api": "intel_variant_provider.plugin:IntelVariantPlugin",
             "requires": [
                 "intel-variant-provider>=0.0.2,<1.0.0"
+            ]
+        },
+        "amd": {
+            "enable-if": "platform_system == 'Linux'",
+            "plugin-api": "amd_variant_provider.plugin:AMDVariantPlugin",
+            "requires": [
+                "amd-variant-provider>=0.0.2,<1.0.0"
             ]
         }
     },
@@ -81,6 +89,46 @@
                     "12.74.4",
                     "20.1.0",
                     "20.4.4"
+                ]
+            }
+        },
+        "rocm6.3": {
+            "amd": {
+                "gfx_arch": [
+                    "gfx1030",
+                    "gfx1100",
+                    "gfx1101",
+                    "gfx1102",
+                    "gfx1200",
+                    "gfx1201",
+                    "gfx900",
+                    "gfx906",
+                    "gfx908",
+                    "gfx90a",
+                    "gfx942"
+                ],
+                "rocm_version": [
+                    "6.3"
+                ]
+            }
+        },
+        "rocm6.4": {
+            "amd": {
+                "gfx_arch": [
+                    "gfx1030",
+                    "gfx1100",
+                    "gfx1101",
+                    "gfx1102",
+                    "gfx1200",
+                    "gfx1201",
+                    "gfx900",
+                    "gfx906",
+                    "gfx908",
+                    "gfx90a",
+                    "gfx942"
+                ],
+                "rocm_version": [
+                    "6.4"
                 ]
             }
         }

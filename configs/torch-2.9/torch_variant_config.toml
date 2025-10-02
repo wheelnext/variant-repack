@@ -25,6 +25,8 @@ deps_remove_list = [
   'tbb',
   'tcmlib',
   'umf',
+  # ROCM
+  "pytorch-triton-rocm",
 ]
 deps_add_list    = [
     # Common to CUDA 12 builds
@@ -99,6 +101,9 @@ deps_add_list    = [
     "tbb==2022.2.0; platform_system == 'Linux' and 'intel' in variant_namespaces",
     "tcmlib==1.4.0; platform_system == 'Linux' and 'intel' in variant_namespaces",
     "umf==0.11.0; platform_system == 'Linux' and 'intel' in variant_namespaces",
+
+    # Common to all ROCm Variants
+    'pytorch-triton-rocm==3.5.0; platform_system == "Linux" and platform_machine == "x86_64" and "amd" in variant_namespaces',
 ]
 
 [metadata_configs.torchvision]
@@ -159,6 +164,40 @@ properties = [
   { namespace = "intel", feature = "device_ip", value = "12.71.4" },  # mtl-h
   { namespace = "intel", feature = "device_ip", value = "12.60.7" },  # pvc
   { namespace = "intel", feature = "device_ip", value = "12.55.8" },  # dg2
+]
+
+[variant_configs.rocm6_4_all_gfx_archs]
+variant_label = "rocm6.4"
+properties = [
+    { namespace = "amd", feature = "rocm_version", value = "6.4" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx900" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx906" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx908" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx90a" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx942" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1030" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1100" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1101" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1102" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1200" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1201" },
+]
+
+[variant_configs.rocm6_3_all_gfx_archs]
+variant_label = "rocm6.3"
+properties = [
+    { namespace = "amd", feature = "rocm_version", value = "6.3" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx900" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx906" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx908" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx90a" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx942" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1030" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1100" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1101" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1102" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1200" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1201" },
 ]
 
 [variant_configs.cpu]
