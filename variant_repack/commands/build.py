@@ -18,6 +18,7 @@ from variantlib import __package_name__
 from variantlib.api import VariantDescription
 from variantlib.api import VariantProperty
 from variantlib.api import make_variant_dist_info
+from variantlib.constants import NULL_VARIANT_LABEL
 from variantlib.constants import VALIDATION_VARIANT_LABEL_REGEX
 from variantlib.constants import VALIDATION_WHEEL_NAME_REGEX
 from variantlib.constants import VARIANT_DIST_INFO_FILENAME
@@ -300,7 +301,11 @@ def make_variant(
         else VariantDescription()
     )
 
-    if variant_label is None:
+    if not properties:
+        assert variant_label is None
+        variant_label = NULL_VARIANT_LABEL
+
+    elif variant_label is None:
         variant_label = vdesc.hexdigest
 
     if not VALIDATION_VARIANT_LABEL_REGEX.fullmatch(variant_label):
