@@ -183,7 +183,7 @@ properties = [
   { namespace = "nvidia", feature = "sm_arch", value = "120_real" },
 ]
 
-[variant_configs.cu13]
+[variant_configs.cu130]
 variant_label = "cuda13.0"  # [0-9a-z._]{1,16}
 properties = [
   { namespace = "nvidia", feature = "cuda_version_lower_bound", value = "13.0" },
@@ -196,7 +196,7 @@ properties = [
   { namespace = "nvidia", feature = "sm_arch", value = "120_virtual" },
 ]
 
-[variant_configs.intel]
+[variant_configs.xpu]
 variant_label = "xpu"  # [0-9a-z._]{1,16}
 properties = [
   { namespace = "intel", feature = "device_ip", value = "20.4.4" },   # lnl-m
