@@ -1,3 +1,7 @@
+"""
+A library that provides help to Python Wheel into Wheel Variants.
+"""
+
 from __future__ import annotations
 
 __package_name__ = "variant_repack"

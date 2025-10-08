@@ -9,10 +9,10 @@ import pprint
 import re
 import shutil
 import tempfile
+import tomllib
 from functools import lru_cache
 from typing import TYPE_CHECKING
 
-import tomllib
 from frozendict import frozendict
 from variantlib import __package_name__
 from variantlib.api import VariantDescription
