@@ -168,6 +168,7 @@ properties = [
   { namespace = "nvidia", feature = "sm_arch", value = "80_real" },
   { namespace = "nvidia", feature = "sm_arch", value = "86_real" },
   { namespace = "nvidia", feature = "sm_arch", value = "90_real" },
+  { namespace = "property", feature = "order", value = "3" },
 ]
 
 [variant_configs.cu128]
@@ -181,6 +182,7 @@ properties = [
   { namespace = "nvidia", feature = "sm_arch", value = "90_real" },
   { namespace = "nvidia", feature = "sm_arch", value = "100_real" },
   { namespace = "nvidia", feature = "sm_arch", value = "120_real" },
+  { namespace = "property", feature = "order", value = "2" },
 ]
 
 [variant_configs.cu130]
@@ -194,6 +196,7 @@ properties = [
   { namespace = "nvidia", feature = "sm_arch", value = "100_real" },
   { namespace = "nvidia", feature = "sm_arch", value = "120_real" },
   { namespace = "nvidia", feature = "sm_arch", value = "120_virtual" },
+  { namespace = "property", feature = "order", value = "1" },
 ]
 
 [variant_configs.xpu]
