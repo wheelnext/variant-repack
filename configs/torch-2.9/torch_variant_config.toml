@@ -210,7 +210,7 @@ properties = [
   { namespace = "intel", feature = "device_ip", value = "12.55.8" },  # dg2
 ]
 
-[variant_configs.rocm6_3_all_gfx_archs]
+[variant_configs.rocm63]
 variant_label = "rocm6.3"
 properties = [
     { namespace = "amd", feature = "rocm_version", value = "6.3" },
@@ -227,7 +227,7 @@ properties = [
     { namespace = "amd", feature = "gfx_arch", value = "gfx1201" },
 ]
 
-[variant_configs.rocm6_4_all_gfx_archs]
+[variant_configs.rocm64]
 variant_label = "rocm6.4"
 properties = [
     { namespace = "amd", feature = "rocm_version", value = "6.4" },
