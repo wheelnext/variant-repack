@@ -9,8 +9,8 @@ enable-if = "platform_system == 'Linux' or platform_system == 'Windows'"
 
 [variant.providers.intel]
 requires = ["intel-variant-provider>=0.0.3,<1.0.0"]
-enable-if = "platform_system == 'Linux' or platform_system == 'Windows'"
 plugin-api = "intel_variant_provider.plugin:IntelVariantPlugin"
+enable-if = "platform_system == 'Linux' or platform_system == 'Windows'"
 
 [variant.providers.amd]
 requires = ["amd-variant-provider>=0.0.2,<1.0.0"]
