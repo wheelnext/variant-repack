@@ -1,0 +1,249 @@
+[metadata_configs]
+[metadata_configs.torch]
+normalize_package_name = false
+normalize_version = true
+deps_remove_list = [
+  # ====== NVIDIA CUDA ====== #
+  # CUDA 12.x
+  "cuda-bindings",
+  "nvidia-cublas-cu12",
+  "nvidia-cuda-cupti-cu12",
+  "nvidia-cuda-nvrtc-cu12",
+  "nvidia-cuda-runtime-cu12",
+  "nvidia-cudnn-cu12",
+  "nvidia-cufft-cu12",
+  "nvidia-cufile-cu12",
+  "nvidia-curand-cu12",
+  "nvidia-cusolver-cu12",
+  "nvidia-cusparse-cu12",
+  "nvidia-cusparselt-cu12",
+  "nvidia-nccl-cu12",
+  "nvidia-nvjitlink-cu12",
+  "nvidia-nvshmem-cu12",
+  "nvidia-nvtx-cu12",
+  # CUDA 13.0
+  "nvidia-cublas",
+  "nvidia-cuda-cupti",
+  "nvidia-cuda-nvrtc",
+  "nvidia-cuda-runtime",
+  "nvidia-cudnn-cu13",
+  "nvidia-cufft",
+  "nvidia-cufile",
+  "nvidia-curand",
+  "nvidia-cusolver",
+  "nvidia-cusparse",
+  "nvidia-cusparselt",
+  "nvidia-nccl-cu13",
+  "nvidia-nvjitlink",
+  "nvidia-nvshmem",
+  "nvidia-nvtx",
+  # Common to all
+  "triton",
+
+  # ====== INTEL ====== #
+  # XPU
+  "dpcpp-cpp-rt",
+  "impi-rt",
+  "intel-cmplr-lib-rt",
+  "intel-cmplr-lib-ur",
+  "intel-cmplr-lic-rt",
+  "intel-opencl-rt",
+  "intel-openmp",
+  "intel-pti",
+  "intel-sycl-rt",
+  "mkl",
+  "oneccl-devel",
+  "oneccl",
+  "onemkl-sycl-blas",
+  "onemkl-sycl-dft",
+  "onemkl-sycl-lapack",
+  "onemkl-sycl-rng",
+  "onemkl-sycl-sparse",
+  "pytorch-triton-xpu",
+  "tbb",
+  "tcmlib",
+  "umf",
+
+  # ====== AMD ====== #
+  # ROCM
+  "pytorch-triton-rocm",
+]
+deps_add_list    = [
+    # Common to all CUDA builds
+    "triton==3.6.0; platform_system == 'Linux' and 'nvidia' in variant_namespaces",
+
+    # Common to CUDA 12 builds
+    "cuda-bindings==12.9.4; platform_system == 'Linux' and 'nvidia :: cuda_version_lower_bound :: 12.0' in variant_properties",
+    "nvidia-cudnn==9.10.2.21; platform_system == 'Linux' and 'nvidia :: cuda_version_lower_bound :: 12.0' in variant_properties",
+    "nvidia-cusparselt==0.7.1; platform_system == 'Linux' and 'nvidia :: cuda_version_lower_bound :: 12.0' in variant_properties",
+    "nvidia-nccl==2.27.5; platform_system == 'Linux' and 'nvidia :: cuda_version_lower_bound :: 12.0' in variant_properties",
+    "nvidia-nvshmem==3.4.5; platform_system == 'Linux' and 'nvidia :: cuda_version_lower_bound :: 12.0' in variant_properties",
+
+    # CUDA 12.6
+    "nvidia-cublas==12.6.4.1; platform_system == 'Linux' and variant_label == 'cuda12.6'",
+    "nvidia-cuda-cupti==12.6.80; platform_system == 'Linux' and variant_label == 'cuda12.6'",
+    "nvidia-cuda-nvrtc==12.6.77; platform_system == 'Linux' and variant_label == 'cuda12.6'",
+    "nvidia-cuda-runtime==12.6.77; platform_system == 'Linux' and variant_label == 'cuda12.6'",
+    "nvidia-cufft==11.3.0.4; platform_system == 'Linux' and variant_label == 'cuda12.6'",
+    "nvidia-cufile==1.11.1.6; platform_system == 'Linux' and variant_label == 'cuda12.6'",
+    "nvidia-curand==10.3.7.77; platform_system == 'Linux' and variant_label == 'cuda12.6'",
+    "nvidia-cusolver==11.7.1.2; platform_system == 'Linux' and variant_label == 'cuda12.6'",
+    "nvidia-cusparse==12.5.4.2; platform_system == 'Linux' and variant_label == 'cuda12.6'",
+    "nvidia-nvjitlink==12.6.85; platform_system == 'Linux' and variant_label == 'cuda12.6'",
+    "nvidia-nvtx==12.6.77; platform_system == 'Linux' and variant_label == 'cuda12.6'",
+
+    # CUDA 12.8
+    "nvidia-cuda-cupti==12.8.90; platform_system == 'Linux' and variant_label == 'cuda12.8'",
+    "nvidia-cuda-nvrtc==12.8.93; platform_system == 'Linux' and variant_label == 'cuda12.8'",
+    "nvidia-cuda-runtime==12.8.90; platform_system == 'Linux' and variant_label == 'cuda12.8'",
+    "nvidia-cufft==11.3.3.83; platform_system == 'Linux' and variant_label == 'cuda12.8'",
+    "nvidia-cufile==1.13.1.3; platform_system == 'Linux' and variant_label == 'cuda12.8'",
+    "nvidia-curand==10.3.9.90; platform_system == 'Linux' and variant_label == 'cuda12.8'",
+    "nvidia-cusolver==11.7.3.90; platform_system == 'Linux' and variant_label == 'cuda12.8'",
+    "nvidia-cusparse==12.5.8.93; platform_system == 'Linux' and variant_label == 'cuda12.8'",
+    "nvidia-nvjitlink==12.8.93; platform_system == 'Linux' and variant_label == 'cuda12.8'",
+    "nvidia-nvtx==12.8.90; platform_system == 'Linux' and variant_label == 'cuda12.8'",
+
+    # CUDA 13
+    "nvidia-cublas==13.1.0.3; platform_system == 'Linux' and variant_label == 'cuda13.0'",
+    "nvidia-cuda-cupti==13.0.85; platform_system == 'Linux' and variant_label == 'cuda13.0'",
+    "nvidia-cuda-nvrtc==13.0.88; platform_system == 'Linux' and variant_label == 'cuda13.0'",
+    "nvidia-cuda-runtime==13.0.96; platform_system == 'Linux' and variant_label == 'cuda13.0'",
+    "nvidia-cudnn==9.15.1.9; platform_system == 'Linux' and variant_label == 'cuda13.0'",
+    "nvidia-cufft==12.0.0.61; platform_system == 'Linux' and variant_label == 'cuda13.0'",
+    "nvidia-cufile==1.15.0.42; platform_system == 'Linux' and variant_label == 'cuda13.0'",
+    "nvidia-curand==10.4.0.35; platform_system == 'Linux' and variant_label == 'cuda13.0'",
+    "nvidia-cusolver==12.0.4.66; platform_system == 'Linux' and variant_label == 'cuda13.0'",
+    "nvidia-cusparse==12.6.3.3; platform_system == 'Linux' and variant_label == 'cuda13.0'",
+    "nvidia-cusparselt==0.8.0; platform_system == 'Linux' and variant_label == 'cuda13.0'",
+    "nvidia-nccl==2.28.9; platform_system == 'Linux' and variant_label == 'cuda13.0'",
+    "nvidia-nvjitlink==13.0.88; platform_system == 'Linux' and variant_label == 'cuda13.0'",
+    "nvidia-nvtx==13.0.85; platform_system == 'Linux' and variant_label == 'cuda13.0'",
+
+    # XPU
+    "dpcpp-cpp-rt==2025.2.1; platform_system == 'Linux' and 'intel' in variant_namespaces",
+    "impi-rt==2021.16.1; platform_system == 'Linux' and platform_machine == 'x86_64' and 'intel' in variant_namespaces",
+    "intel-cmplr-lib-rt==2025.2.1; platform_system == 'Linux' and 'intel' in variant_namespaces",
+    "intel-cmplr-lib-ur==2025.2.1; platform_system == 'Linux' and 'intel' in variant_namespaces",
+    "intel-cmplr-lic-rt==2025.2.1; platform_system == 'Linux' and 'intel' in variant_namespaces",
+    "intel-opencl-rt==2025.2.1; platform_system == 'Linux' and 'intel' in variant_namespaces",
+    "intel-openmp==2025.2.1; platform_system == 'Linux' and 'intel' in variant_namespaces",
+    "intel-pti==0.13.1; platform_system == 'Linux' and 'intel' in variant_namespaces",
+    "intel-sycl-rt==2025.2.1; platform_system == 'Linux' and 'intel' in variant_namespaces",
+    "mkl==2025.2.0; platform_system == 'Linux' and 'intel' in variant_namespaces",
+    "oneccl-devel==2021.16.1; platform_system == 'Linux' and platform_machine == 'x86_64' and 'intel' in variant_namespaces",
+    "oneccl==2021.16.1; platform_system == 'Linux' and platform_machine == 'x86_64' and 'intel' in variant_namespaces",
+    "onemkl-sycl-blas==2025.2.0; platform_system == 'Linux' and 'intel' in variant_namespaces",
+    "onemkl-sycl-dft==2025.2.0; platform_system == 'Linux' and 'intel' in variant_namespaces",
+    "onemkl-sycl-lapack==2025.2.0; platform_system == 'Linux' and 'intel' in variant_namespaces",
+    "onemkl-sycl-rng==2025.2.0; platform_system == 'Linux' and 'intel' in variant_namespaces",
+    "onemkl-sycl-sparse==2025.2.0; platform_system == 'Linux' and 'intel' in variant_namespaces",
+    "pytorch-triton-xpu==3.5.0; platform_system == 'Linux' and 'intel' in variant_namespaces",
+    "tbb==2022.2.0; platform_system == 'Linux' and 'intel' in variant_namespaces",
+    "tcmlib==1.4.0; platform_system == 'Linux' and 'intel' in variant_namespaces",
+    "umf==0.11.0; platform_system == 'Linux' and 'intel' in variant_namespaces",
+
+    # Common to all ROCm Variants
+    'pytorch-triton-rocm==3.5.0; platform_system == "Linux" and platform_machine == "x86_64" and "amd" in variant_namespaces',
+]
+
+[metadata_configs.torchvision]
+normalize_package_name = false
+normalize_version = true
+deps_remove_list = ["torch"]
+deps_add_list    = ["torch==2.10.0"]
+
+
+# PyT CUDA `sm_archs`: https://github.com/pytorch/pytorch/blob/v2.10.0-rc7/.ci/manywheel/build_cuda.sh
+
+[variant_configs]
+[variant_configs.cu126]
+variant_label = "cuda12.6"  # [0-9a-z._]{1,16}
+properties = [
+  { namespace = "nvidia", feature = "cuda_version_lower_bound", value = "12.0" },
+  { namespace = "nvidia", feature = "sm_arch", value = "50_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "60_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "70_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "75_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "80_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "86_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "90_real" },
+  { namespace = "property", feature = "order", value = "3" },
+]
+
+[variant_configs.cu128]
+variant_label = "cuda12.8"  # [0-9a-z._]{1,16}
+properties = [
+  { namespace = "nvidia", feature = "cuda_version_lower_bound", value = "12.0" },
+  { namespace = "nvidia", feature = "sm_arch", value = "70_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "75_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "80_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "86_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "90_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "100_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "120_real" },
+  { namespace = "property", feature = "order", value = "2" },
+]
+
+[variant_configs.cu130]
+variant_label = "cuda13.0"  # [0-9a-z._]{1,16}
+properties = [
+  { namespace = "nvidia", feature = "cuda_version_lower_bound", value = "13.0" },
+  { namespace = "nvidia", feature = "sm_arch", value = "75_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "80_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "86_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "90_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "100_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "120_real" },
+  { namespace = "nvidia", feature = "sm_arch", value = "120_virtual" },
+  { namespace = "property", feature = "order", value = "1" },
+]
+
+[variant_configs.xpu]
+variant_label = "xpu"  # [0-9a-z._]{1,16}
+properties = [
+  { namespace = "intel", feature = "device_ip", value = "20.4.4" },   # lnl-m
+  { namespace = "intel", feature = "device_ip", value = "20.1.0" },   # bmg
+  { namespace = "intel", feature = "device_ip", value = "12.74.4" },  # arl-h
+  { namespace = "intel", feature = "device_ip", value = "12.71.4" },  # mtl-h
+  { namespace = "intel", feature = "device_ip", value = "12.60.7" },  # pvc
+  { namespace = "intel", feature = "device_ip", value = "12.55.8" },  # dg2
+]
+
+[variant_configs.rocm70]
+variant_label = "rocm7.0"
+properties = [
+    { namespace = "amd", feature = "rocm_version", value = "7.0" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx900" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx906" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx908" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx90a" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx942" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1030" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1100" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1101" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1102" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1200" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1201" },
+]
+
+[variant_configs.rocm71]
+variant_label = "rocm7.1"
+properties = [
+    { namespace = "amd", feature = "rocm_version", value = "7.1" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx900" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx906" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx908" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx90a" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx942" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1030" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1100" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1101" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1102" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1200" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1201" },
+]
+
+[variant_configs.cpu]
+# variant_label = None  # FORBIDDEN - No Alias -> NULL VARIANT: `null`
+properties = []
