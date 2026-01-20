@@ -217,36 +217,42 @@ properties = [
   { namespace = "intel", feature = "device_ip", value = "12.55.8" },  # dg2
 ]
 
-[variant_configs.rocm63]
-variant_label = "rocm6.3"
+[variant_configs.rocm70]
+variant_label = "rocm7.0"
 properties = [
-    { namespace = "amd", feature = "rocm_version", value = "6.3" },
+    { namespace = "amd", feature = "rocm_version", value = "7.0" },
     { namespace = "amd", feature = "gfx_arch", value = "gfx900" },
     { namespace = "amd", feature = "gfx_arch", value = "gfx906" },
     { namespace = "amd", feature = "gfx_arch", value = "gfx908" },
     { namespace = "amd", feature = "gfx_arch", value = "gfx90a" },
     { namespace = "amd", feature = "gfx_arch", value = "gfx942" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx950" },
     { namespace = "amd", feature = "gfx_arch", value = "gfx1030" },
     { namespace = "amd", feature = "gfx_arch", value = "gfx1100" },
     { namespace = "amd", feature = "gfx_arch", value = "gfx1101" },
     { namespace = "amd", feature = "gfx_arch", value = "gfx1102" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1150" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1151" },
     { namespace = "amd", feature = "gfx_arch", value = "gfx1200" },
     { namespace = "amd", feature = "gfx_arch", value = "gfx1201" },
 ]
 
-[variant_configs.rocm64]
-variant_label = "rocm6.4"
+[variant_configs.rocm71]
+variant_label = "rocm7.1"
 properties = [
-    { namespace = "amd", feature = "rocm_version", value = "6.4" },
+    { namespace = "amd", feature = "rocm_version", value = "7.0" },
     { namespace = "amd", feature = "gfx_arch", value = "gfx900" },
     { namespace = "amd", feature = "gfx_arch", value = "gfx906" },
     { namespace = "amd", feature = "gfx_arch", value = "gfx908" },
     { namespace = "amd", feature = "gfx_arch", value = "gfx90a" },
     { namespace = "amd", feature = "gfx_arch", value = "gfx942" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx950" },
     { namespace = "amd", feature = "gfx_arch", value = "gfx1030" },
     { namespace = "amd", feature = "gfx_arch", value = "gfx1100" },
     { namespace = "amd", feature = "gfx_arch", value = "gfx1101" },
     { namespace = "amd", feature = "gfx_arch", value = "gfx1102" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1150" },
+    { namespace = "amd", feature = "gfx_arch", value = "gfx1151" },
     { namespace = "amd", feature = "gfx_arch", value = "gfx1200" },
     { namespace = "amd", feature = "gfx_arch", value = "gfx1201" },
 ]
