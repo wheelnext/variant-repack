@@ -1,0 +1,24 @@
+[variant.default-priorities]
+namespace = ["nvidia", "intel", "amd", "priority"]
+
+[variant.providers.nvidia]
+requires = ["nvidia-variant-provider>=0.0.2,<1.0.0"]
+plugin-api = "nvidia_variant_provider.plugin:NvidiaVariantPlugin"
+enable-if = "platform_system == 'Linux' or platform_system == 'Windows'"
+
+[variant.providers.intel]
+requires = ["intel-variant-provider>=0.0.3,<1.0.0"]
+plugin-api = "intel_variant_provider.plugin:IntelVariantPlugin"
+enable-if = "platform_system == 'Linux' or platform_system == 'Windows'"
+
+[variant.providers.amd]
+requires = ["amd-variant-provider>=0.0.2,<1.0.0"]
+plugin-api = "amd_variant_provider.plugin:AMDVariantPlugin"
+enable-if = "platform_system == 'Linux'"
+
+[variant.providers.priority]
+install-time = false
+requires = []
+
+[variant.static-properties.priority]
+order = ["1", "2", "3"]
