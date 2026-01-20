@@ -215,6 +215,8 @@ properties = [
   { namespace = "intel", feature = "device_ip", value = "12.71.4" },  # mtl-h
   { namespace = "intel", feature = "device_ip", value = "12.60.7" },  # pvc
   { namespace = "intel", feature = "device_ip", value = "12.55.8" },  # dg2
+  { namespace = "intel", feature = "device_ip", value = "30.0.4" },   # ptl, ptl-h
+  { namespace = "intel", feature = "device_ip", value = "30.1.0" },   # ptl-u
 ]
 
 [variant_configs.rocm70]
