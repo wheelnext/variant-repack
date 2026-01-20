@@ -160,7 +160,7 @@ deps_remove_list = ["torch"]
 deps_add_list    = ["torch==2.10.0"]
 
 
-# PyT CUDA `sm_archs`: https://github.com/pytorch/pytorch/blob/v2.9.0-rc4/.ci/manywheel/build_cuda.sh
+# PyT CUDA `sm_archs`: https://github.com/pytorch/pytorch/tree/v2.10.0-rc7/.ci/manywheel/build_cuda.sh
 
 [variant_configs]
 [variant_configs.cu126]
