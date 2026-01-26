@@ -13,7 +13,7 @@ dev = [
     "pre-commit>=4,<5",  # https://github.com/pre-commit/pre-commit
     "ruff>=0.12,<1.0",
     "twine>=6.2,<7.0",
-    "wheel>=0.45,<0.46",
+    "wheel>=0.45,<0.47",
 ]
 
 [project]
