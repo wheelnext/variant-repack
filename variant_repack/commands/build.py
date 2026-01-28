@@ -24,8 +24,8 @@ from variantlib.constants import VALIDATION_WHEEL_NAME_REGEX
 from variantlib.constants import VARIANT_DIST_INFO_FILENAME
 from variantlib.constants import VARIANT_LABEL_LENGTH
 from variantlib.pyproject_toml import VariantPyProjectToml
-from wheel.cli.pack import pack as wheel_pack
-from wheel.cli.unpack import unpack as wheel_unpack
+from wheel._commands.pack import pack as wheel_pack
+from wheel._commands.unpack import unpack as wheel_unpack
 
 if sys.version_info >= (3, 11):  # noqa: UP036
     import tomllib
