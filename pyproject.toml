@@ -11,7 +11,7 @@ dev = [
     "flit>=3.12,<4",
     "mypy==1.19.1",  # https://github.com/python/mypy
     "pre-commit>=4,<5",  # https://github.com/pre-commit/pre-commit
-    "ruff>=0.12,<1.0",
+    "ruff>=0.15.10,<1.0",
     "twine>=6.2,<7.0",
 ]
 
