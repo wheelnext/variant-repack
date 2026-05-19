@@ -32,7 +32,7 @@ dependencies = [
     "tomli; python_version < '3.11'",
     "typing-extensions; python_version < '3.11'",
     "variantlib[cli] @ git+https://github.com/wheelnext/variantlib.git@main",
-    "wheel>=0.46.2,<0.47",
+    "wheel>=0.46.2,<0.48",
 ]
 dynamic = ["description", "version"]
 
