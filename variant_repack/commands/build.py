@@ -22,7 +22,6 @@ from variantlib.constants import NULL_VARIANT_LABEL
 from variantlib.constants import VALIDATION_VARIANT_LABEL_REGEX
 from variantlib.constants import VALIDATION_WHEEL_NAME_REGEX
 from variantlib.constants import VARIANT_DIST_INFO_FILENAME
-from variantlib.constants import VARIANT_LABEL_LENGTH
 from variantlib.pyproject_toml import VariantPyProjectToml
 from wheel._commands.pack import pack as wheel_pack
 from wheel._commands.unpack import unpack as wheel_unpack
@@ -310,7 +309,7 @@ def make_variant(
 
     if not VALIDATION_VARIANT_LABEL_REGEX.fullmatch(variant_label):
         raise ValueError(
-            f"invalid variant label (must be up to {VARIANT_LABEL_LENGTH} alphanumeric "
+            f"invalid variant label (must consist of alphanumeric "
             f"characters): {variant_label!r}"
         )
 
