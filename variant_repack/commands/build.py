@@ -18,7 +18,6 @@ from variantlib import __package_name__
 from variantlib.api import VariantDescription
 from variantlib.api import VariantProperty
 from variantlib.api import make_variant_dist_info
-from variantlib.constants import NULL_VARIANT_LABEL
 from variantlib.constants import VALIDATION_VARIANT_LABEL_REGEX
 from variantlib.constants import VALIDATION_WHEEL_NAME_REGEX
 from variantlib.constants import VARIANT_DIST_INFO_FILENAME
@@ -289,29 +288,20 @@ def make_variant(
     # Extract relevant information - 1. Variant Label
     variant_label = variant_config.get("variant_label", None)
 
+    if variant_label is not None and not VALIDATION_VARIANT_LABEL_REGEX.fullmatch(
+        variant_label
+    ):
+        raise ValueError(
+            f"invalid variant label (must consist of alphanumeric "
+            f"characters): {variant_label!r}"
+        )
+
     # Extract relevant information - 2. Variant Properties
     properties = [
         VariantProperty(**vprop) for vprop in variant_config.get("properties", [])
     ]
 
-    vdesc = (
-        VariantDescription(properties=properties)
-        if properties
-        else VariantDescription()
-    )
-
-    if not properties:
-        assert variant_label is None
-        variant_label = NULL_VARIANT_LABEL
-
-    elif variant_label is None:
-        variant_label = vdesc.hexdigest
-
-    if not VALIDATION_VARIANT_LABEL_REGEX.fullmatch(variant_label):
-        raise ValueError(
-            f"invalid variant label (must consist of alphanumeric "
-            f"characters): {variant_label!r}"
-        )
+    vdesc = VariantDescription(properties=properties, label=variant_label)
 
     # ============================================== #
 
@@ -346,7 +336,8 @@ def make_variant(
         # 1. Generate the `variants.json` file
         with (distinfo_dir / VARIANT_DIST_INFO_FILENAME).open(mode="wb") as fp:
             dist_info_data = make_variant_dist_info(
-                vdesc, variant_info=variant_info, variant_label=variant_label
+                vdesc,
+                variant_info=variant_info,
             )
             fp.write(dist_info_data.encode("utf-8"))
 
@@ -369,13 +360,8 @@ def make_variant(
             )
 
         # Determine output wheel filename
-        output_filepath = (
-            output_directory
-            / f"{output_wheel_info.group('base_wheel_name')}-{variant_label}.whl"
-        )
-
         output_filepath = output_directory / sanitize_wheel_filename(
-            f"{output_wheel_info.group('base_wheel_name')}-{variant_label}.whl"
+            f"{output_wheel_info.group('base_wheel_name')}-{vdesc.variant_label}.whl"
         )
         shutil.move(tmp_whl_filepath, output_filepath)
 
