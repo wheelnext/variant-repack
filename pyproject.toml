@@ -171,6 +171,7 @@ ignore = [
     "N815",    # Checks for class variable names that follow the mixedCase convention.
     "PLR0913", # Checks for function definitions that include too many arguments.
     "PLR2004", # Checks for the use of unnamed numerical constants ("magic") values in
+    "PLR0917", # Too many positional arguments
     # comparisons.
     "PYI024", # Checks for uses of collections.namedtuple in stub files.
     "RUF012", # Mutable class attributes should be annotated with `typing.ClassVar`
